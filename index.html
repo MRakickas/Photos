@@ -47,11 +47,14 @@
     }
 
     #modalImage {
-      max-width: 75vw; 
-      max-height: 75vh;
       display: block;
-      object-fit: contain;
+      max-width: 80vw;   /* no wider than 75% of the viewport width */
+      max-height: 80vh;  /* no taller than 75% of the viewport height */
+      width: auto;       /* let the browser keep the natural aspect ratio */
+      height: auto;
+      object-fit: contain; /* optional: keeps portrait/landscape natural */
       border-radius: 12px;
+      background: transparent; /* remove any unwanted background */
     }
 
     .modal-content {
@@ -67,6 +70,29 @@
       font-size: 40px;
       cursor: pointer;
     }
+
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -50px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+  /* Position the "next button" to the right */
+  .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
  
   </style>
 </head>
@@ -79,6 +105,9 @@
     <div class="caption-container">
       <p id="caption"></p>
     </div>
+
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
 
   </main>
@@ -93,24 +122,23 @@
       modal.style.display = "none";
     });
     
-    
     const grid = document.getElementById('grid');
     const MAX = 200;
     const ext = 'png';
+    var currentPlace = 1;
+
+    function openModal(img) {
+      modal.style.display = "block";
+      modalImg.src = img.src; 
+      currentPlace = parseInt(str.split(img.src)[1], 10);
+    }
 
     for (let i = 1; i <= MAX; i++) {
       const img = document.createElement('img');
       img.alt = `Photo ${i}`;
       img.loading = 'lazy';
-      if (i < 10) {
-        img.src = `./collection/Image0${i}.${ext}`;
-      } else {
-        img.src = `./collection/Image${i}.${ext}`;
-      }
-      img.onclick = function () {
-        modal.style.display = "block";
-        modalImg.src = img.src; 
-      };
+      img.src = `./collection/Image${i}.${ext}`;
+      img.onclick = () => openModal(img);
 
       img.onload  = () => img.classList.add('loaded');
       img.onerror = () => {
@@ -119,6 +147,16 @@
 
       grid.appendChild(img);
     }
+
+    function plusSlides(n) {
+      if (n == 1) {
+        currentPlace++;
+      } else {
+        currentPlace--;
+      }
+      modalImg.src = `./collection/Image${currentPlace}.png`
+    }
+
   </script>
 </body>
 </html>
