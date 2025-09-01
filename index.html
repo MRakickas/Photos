@@ -36,25 +36,29 @@
     img.loaded { opacity:1; transform:translateY(0) }
     
     .modal {
-      display: none;
-      position: fixed;
-      z-index: 999;
-      padding-top: 80px;
-      left: 0; top: 0;
-      width: 100%; height: 100%;
-      overflow: auto;
-      background-color: rgba(0,0,0,0.9);
+      display:none;
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      background:rgba(0,0,0,0.9);
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      flex-direction:column;
+      padding:0;
+      overflow:hidden;
     }
 
     #modalImage {
       display: block;
-      max-width: 80vw;   /* no wider than 75% of the viewport width */
-      max-height: 80vh;  /* no taller than 75% of the viewport height */
-      width: auto;       /* let the browser keep the natural aspect ratio */
+      max-width: 80vw; 
+      max-height: 80vh; 
+      width: auto;  
       height: auto;
-      object-fit: contain; /* optional: keeps portrait/landscape natural */
+      object-fit: contain; 
       border-radius: 12px;
-      background: transparent; /* remove any unwanted background */
+      background: transparent;
     }
 
     .modal-content {
@@ -62,6 +66,7 @@
       display: block;
       max-width: 80%;
     }
+    
     .close {
       position: absolute;
       top: 20px;
