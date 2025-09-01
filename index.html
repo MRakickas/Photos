@@ -56,6 +56,7 @@
       object-fit: contain; 
       border-radius: 12px;
       background: transparent;
+      align-items:center;
     }
 
     .modal-content {
@@ -132,7 +133,9 @@
     function openModal(img) {
       modal.style.display = "block";
       modalImg.src = img.src; 
-      currentPlace = parseInt(str.split(img.src)[1], 10);
+      
+      const match = img.src.match(/Image(\d+)\./);
+      currentPlace = parseInt(match[1], 10);
     }
 
     for (let i = 1; i <= MAX; i++) {
