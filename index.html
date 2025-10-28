@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marius Photos</title>
+  <style>
+    body {
+      margin:0;
+      background:#111;
+      color:#eee;
+      font-family:system-ui,Arial,sans-serif;
+    }
+    
+    .container {
+      width: 75%; /* 1/8 margin on each side = 75% content area */
+      margin: 0 auto;
+      padding: 20px 0;
+    }
+    
+    .title {
+      font-family: 'Georgia', serif;
+      font-size: 3.5em;
+      font-weight: 300;
+      text-align: center;
+      margin: 40px 0 50px 0;
+      letter-spacing: 8px;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .grid {
+      display:grid;
+      grid-template-columns: repeat(3, 1fr); 
+      gap:16px;
+      padding:20px;
+      max-width:none;
+      margin:0 auto;
+    }
+
+    .grid img {
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius:12px;
+      background:#222;
+      transform:translateY(8px);
+      transition:opacity .4s ease, transform .4s ease;
+    }
+    img.loaded { opacity:1; transform:translateY(0) }
+    
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      padding-top: 80px;
+      left: 0; top: 0;
+      width: 100%; height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.9);
+      align-items:center;
+    }
+
+    #modalImage {
+      display: block;
+      max-width: 80vw; 
+      max-height: 80vh; 
+      width: auto;  
+      height: auto;
+      object-fit: contain; 
+      border-radius: 12px;
+      background: transparent;
+      align-items:center;
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+    }
+    
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 45px;
+      color: #fff;
+      font-size: 40px;
+      cursor: pointer;
+    }
+
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -50px;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+ 
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">Marius' Photography</h1>
+    
+    <main class="grid" id="grid">
+
+    <div id="myModal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modalImage">
+      <div class="caption-container">
+        <p id="caption"></p>
+      </div>
+
+      <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+
+    </main>
+  </div>
+
+  <script>
+    const modal = document.getElementById("myModal");
+    const modalImg = document.getElementById("modalImage");
+    const captionText = document.getElementById("caption");
+    const closeBtn = document.querySelector(".close");
+
+    closeBtn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+    
+    const grid = document.getElementById('grid');
+    const MAX = 200;
+    const ext = 'png';
+    var currentPlace = 1;
+
+    function openModal(img) {
+      modal.style.display = "block";
+      modalImg.src = img.src; 
+      
+      const match = img.src.match(/Image(\d+)\./);
+      currentPlace = parseInt(match[1], 10);
+    }
+
+    for (let i = 1; i <= MAX; i++) {
+      const img = document.createElement('img');
+      img.alt = `Photo ${i}`;
+      img.loading = 'lazy';
+      img.src = `./collection/Image${i}.${ext}`;
+      img.onclick = () => openModal(img);
+
+      img.onload  = () => img.classList.add('loaded');
+      img.onerror = () => {
+        img.remove()
+      };
+
+      grid.appendChild(img);
+    }
+
+    function plusSlides(n) {
+      if (n == 1) {
+        currentPlace++;
+      } else {
+        currentPlace--;
+      }
+      modalImg.src = `./collection/Image${currentPlace}.png`
+    }
+
+  </script>
+</body>
+</html>
