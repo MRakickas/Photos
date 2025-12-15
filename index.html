@@ -175,7 +175,8 @@
     });
     
     const grid = document.getElementById('grid');
-    const MAX = 80;
+    const MAX = 200;
+    const gen = 100;
     const ext = 'png';
     var currentPlace = 1;
 
@@ -183,15 +184,15 @@
       modal.style.display = "block";
       modalImg.src = img.src; 
       
-      const match = img.src.match(/Image(\d+)\./);
+      const match = img.src.match(/Image(\d+)_/);
       currentPlace = parseInt(match[1], 10);
     }
 
-    for (let i = 1; i <= MAX; i++) {
+    for (let i = 10; i <= MAX; i++) {
       const img = document.createElement('img');
       img.alt = `Photo ${i}`;
       img.loading = 'lazy';
-      img.src = `./collection/Image${i}.${ext}`;
+      img.src = `./collection/Image${i}_${gen}.${ext}`;
       img.onclick = () => openModal(img);
 
       img.onload  = () => img.classList.add('loaded');
@@ -208,7 +209,7 @@
       } else {
         currentPlace--;
       }
-      modalImg.src = `./collection/Image${currentPlace}.png`
+      modalImg.src = `./collection/Image${currentPlace}_${gen}.png`
     }
 
   </script>
