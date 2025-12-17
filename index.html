@@ -65,6 +65,7 @@
       display:block;
       border-radius:12px;
       background:#222;
+      opacity:0;
       transform:translateY(8px);
       transition:opacity .4s ease, transform .4s ease;
     }
@@ -188,22 +189,7 @@
       currentPlace = parseInt(match[1], 10);
     }
 
-    for (let i = 10; i <= 16 ; i++) {
-      const img = document.createElement('img');
-      img.alt = `Photo ${i}`;
-      img.loading = 'lazy';
-      img.src = `./collection/Image${i}_${gen}.${ext}`;
-      img.onclick = () => openModal(img);
-
-      img.onload  = () => img.classList.add('loaded');
-      img.onerror = () => {
-        img.remove()
-      };
-
-      grid.appendChild(img);
-    }
-
-    for (let i = 17; i <= MAX; i++) {
+    for (let i = 10; i <= MAX ; i++) {
       const img = document.createElement('img');
       img.alt = `Photo ${i}`;
       img.loading = 'lazy';
