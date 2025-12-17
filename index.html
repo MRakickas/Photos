@@ -176,9 +176,9 @@
     
     const grid = document.getElementById('grid');
     const MAX = 200;  
-    const gen = 100;
+    const gen = 101;
     const ext = 'png';
-    var currentPlace = 1;
+    var currentPlace = 10;
 
     function openModal(img) {
       modal.style.display = "block";
@@ -209,6 +209,7 @@
       } else {
         currentPlace--;
       }
+      currentPlace = Math.max(10, Math.min(MAX, currentPlace));
       modalImg.src = `./collection/Image${currentPlace}_${gen}.png`
     }
 
