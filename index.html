@@ -83,6 +83,22 @@
       align-items:center;
     }
 
+    .grid-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grid-caption {
+      margin-top: 6px;
+      text-align: center;
+      font-family: "Times New Roman", Times, serif;
+      font-size: 1rem;
+      font-weight: 100;
+      letter-spacing: 0.4px;
+      color: #ddd;
+      opacity: 0.85;
+    }
+
     #modalImage {
       display: block;
       max-width: 80vw; 
@@ -191,7 +207,7 @@
   const closeBtn = document.querySelector(".close");
   const grid = document.getElementById('grid');
 
-  const MAX = 150;
+  const MAX = 94;
   const START = 10;
   const gen = 105;
   const ext = 'avif';
@@ -233,21 +249,30 @@
     });
 
   function createImages() {
-    for (let i = START; i <= MAX; i++) {
-      const img = document.createElement('img');
-      const location = locations[i - START];
+  for (let i = START; i <= MAX; i++) {
+    const location = locations[i - START];
 
-      img.alt = location;
-      img.loading = 'lazy';
-      img.src = `./collection/Image${i}_${gen}.${ext}`;
-      img.onclick = () => openModal(img);
+    const wrapper = document.createElement('div');
+    wrapper.className = 'grid-item';
 
-      img.onload = () => img.classList.add('loaded');
-      img.onerror = () => img.remove();
+    const img = document.createElement('img');
+    img.alt = location;
+    img.loading = 'lazy';
+    img.src = `./collection/Image${i}_${gen}.${ext}`;
+    img.onclick = () => openModal(img);
 
-      grid.appendChild(img);
-    }
+    img.onload = () => img.classList.add('loaded');
+    img.onerror = () => wrapper.remove();
+
+    const caption = document.createElement('div');
+    caption.className = 'grid-caption';
+    caption.textContent = location;
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(caption);
+    grid.appendChild(wrapper);
   }
+}
 </script>
 </body>
 </html>
