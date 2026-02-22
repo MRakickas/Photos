@@ -212,9 +212,8 @@
 
     .caption-container {
       position: fixed;
-      top: 83%;
       left: 0;
-      width: 100vw;              /* full screen width */
+      width: 100vw;
       pointer-events: none;
       text-align: center;
       padding: 0 24px;
@@ -279,18 +278,26 @@
   function openModal(img) {
     modal.style.display = "block";
     modalImg.src = img.src;
+    captionText.textContent = img.alt;
+
+    modalImg.onload = () => {
+      positionCaptionBelowImage();
+    };
 
     const match = img.src.match(/Image(\d+)_/);
     currentPlace = parseInt(match[1], 10);
-    captionText.textContent = img.alt;
   }
 
   function plusSlides(n) {
     currentPlace += n;
     currentPlace = Math.max(START, Math.min(MAX, currentPlace));
+
     modalImg.src = `./collection/Image${currentPlace}_${gen}.${ext}`;
-    captionText.textContent =
-      locations[currentPlace - START];
+    captionText.textContent = locations[currentPlace - START];
+
+    modalImg.onload = () => {
+      positionCaptionBelowImage();
+    };
   }
 
   // 🔹 Load locations.txt
@@ -304,6 +311,16 @@
       console.error('Failed to load locations.txt', err);
       createImages(); // fallback
     });
+
+
+  function positionCaptionBelowImage() {
+    const imgRect = modalImg.getBoundingClientRect();
+    const captionContainer = document.querySelector('.caption-container');
+
+    const spacing = 24; // pixels below image (tweak if you want)
+    
+    captionContainer.style.top = `${imgRect.bottom + spacing}px`;
+  }
 
   function createImages() {
   for (let i = START; i <= MAX; i++) {
