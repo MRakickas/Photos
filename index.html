@@ -23,55 +23,6 @@
   <link rel="canonical" href="https://mariusphotos.com/">
 
   <style>
-
-    @media (max-width: 768px) {
-
-    /* Grid goes to 2 columns instead of 3 */
-    .grid {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 10px;
-      padding: 10px;
-    }
-
-    /* Smaller captions under grid images */
-    .grid-caption {
-      font-size: 0.2rem;
-      letter-spacing: 0.25px;
-      opacity: 0.65;
-      margin-top: 4px;
-    }
-
-    /* Modal image slightly smaller */
-    #modalImage {
-      max-width: 92vw;
-      max-height: 70vh;
-    }
-
-    /* Push caption further down */
-    .caption-container {
-      top: 90%;
-    }
-
-    /* Smaller modal caption text */
-    #caption {
-      font-size: 1.4rem;
-      letter-spacing: 0.3px;
-    }
-
-    /* Smaller arrows */
-    .prev,
-    .next {
-      font-size: 16px;
-      padding: 10px;
-    }
-
-    /* Close button smaller + tighter */
-    .close {
-      font-size: 32px;
-      top: 15px;
-      right: 20px;
-    }
-  }
     body {
       margin:0;
       background:#111;
@@ -198,13 +149,53 @@
     }
     
     @media (max-width: 768px) {
+
       .container {
         width: 100%;
       }
-      
+
       .title {
         font-size: 2em;
         letter-spacing: 3px;
+      }
+
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .grid-caption {
+        font-size: 0.001rem;
+        letter-spacing: 0.25px;
+        opacity: 0.65;
+        margin-top: 4px;
+      }
+
+      #modalImage {
+        max-width: 92vw;
+        max-height: 70vh;
+      }
+
+      .caption-container {
+        top: 90%;
+      }
+
+      #caption {
+        font-size: 1.4rem;
+        letter-spacing: 0.3px;
+      }
+
+      .prev,
+      .next {
+        font-size: 16px;
+        padding: 10px;
+      }
+
+      .close {
+        font-size: 32px;
+        top: 15px;
+        right: 20px;
       }
     }
 
