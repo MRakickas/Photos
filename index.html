@@ -197,16 +197,27 @@
         top: 15px;
         right: 20px;
       }
+
+      .caption-container {
+        top: 90%;
+        padding: 0 16px;
+      }
+
+      #caption {
+        font-size: 1.3rem;       /* smaller on mobile */
+        letter-spacing: 0.3px;
+        line-height: 1.15;
+      }
     }
 
     .caption-container {
       position: fixed;
       top: 83%;
       left: 0;
-      width: 100vw;              /* FULL screen width */
+      width: 100vw;              /* full screen width */
       pointer-events: none;
       text-align: center;
-      padding: 0 24px;           /* breathing room on edges */
+      padding: 0 24px;
       box-sizing: border-box;
     }
 
@@ -219,9 +230,9 @@
       text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
       margin: 0;
 
-      white-space: nowrap;       /* FORCE single line */
-      overflow: hidden;
-      text-overflow: ellipsis;   /* safety if absurdly long */
+      white-space: normal;       /* ALLOW wrapping */
+      line-height: 1.2;          /* tighter multi-line spacing */
+      max-width: 100%;
     }
       
   </style>
