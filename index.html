@@ -31,7 +31,7 @@
     }
     
     .container {
-      width: 75%; /* 1/8 margin on each side = 75% content area */
+      width: 75%;
       margin: 0 auto;
       padding: 20px 0;
     }
@@ -204,7 +204,7 @@
       }
 
       #caption {
-        font-size: 1.3rem;       /* smaller on mobile */
+        font-size: 1rem;
         letter-spacing: 0.3px;
         line-height: 1.15;
       }
@@ -229,8 +229,8 @@
       text-shadow: 0 4px 18px rgba(0, 0, 0, 0.85);
       margin: 0;
 
-      white-space: normal;       /* ALLOW wrapping */
-      line-height: 1.2;          /* tighter multi-line spacing */
+      white-space: normal;
+      line-height: 1.2;
       max-width: 100%;
     }
       
@@ -309,7 +309,7 @@
     })
     .catch(err => {
       console.error('Failed to load locations.txt', err);
-      createImages(); // fallback
+      createImages();
     });
 
 
@@ -317,7 +317,7 @@
     const imgRect = modalImg.getBoundingClientRect();
     const captionContainer = document.querySelector('.caption-container');
 
-    const spacing = 24; // pixels below image (tweak if you want)
+    const spacing = 24;
     
     captionContainer.style.top = `${imgRect.bottom + spacing}px`;
   }
