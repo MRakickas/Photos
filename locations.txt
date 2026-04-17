@@ -25,7 +25,7 @@ Seattle, WA.
 Picos De Europa, Spain.
 Ellensburg, WA.
 Multnomah Falls, OR.
-Winthrop, WA.
+Yellowstone National Park, WA.
 Leavenworth, WA.
 Canary Islands, Spain.
 Newport, OR.
@@ -39,6 +39,7 @@ Palouse, WA.
 Sammamish, WA.
 Anacortes, WA.
 Mount Rainier, WA.
+Winthrop, WA.
 Iguazu Falls, Argentina.
 Palouse, WA.
 Palouse Falls, WA.
@@ -46,6 +47,7 @@ Lake Chelan, WA.
 University of Washington, WA.
 Lake Washington, WA.
 Newport, OR.
+Yellowstone National Park, WA.
 Whidbey Island, WA.
 San Juan Island, WA.
 Humahuaca, Argentina.
@@ -81,6 +83,7 @@ Unkown.
 Crystal Mountain, WA.
 Gas Works Park, Seattle.
 Lake 22, WA.
+San Juan del Sur, Nicaragua.
 Sumas, WA.
 Sammamish, WA.
 Carnation, WA.
